@@ -1,7 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 690 170" width="690" height="170" role="img" aria-label="Prompt2Box"
      font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace">
   <title>Prompt2Box</title>
-  <text xml:space="preserve" x="8" y="30" fill="#4285F4" font-size="17" font-weight="700">
+  <style>
+    .wm { fill: #1f2328; }                                   /* light mode: dark */
+    @media (prefers-color-scheme: dark) { .wm { fill: #ffffff; } }  /* dark mode: white */
+  </style>
+  <text xml:space="preserve" class="wm" x="8" y="30" font-size="17" font-weight="700">
     <tspan x="8" dy="0">        ___                            _   ____  ____</tspan>
     <tspan x="8" dy="22">       / _ \ _ __ ___  _ __ ___  _ __ | |_|___ \| __ )  _____  __</tspan>
     <tspan x="8" dy="22">      | |_) | '__/ _ \| '_ ` _ \| '_ \| __| __) |  _ \ / _ \ \/ /</tspan>
