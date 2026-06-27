@@ -1,13 +1,6 @@
 <div align="center">
 
-```
-        ___                            _   ____  ____
-       / _ \ _ __ ___  _ __ ___  _ __ | |_|___ \| __ )  _____  __
-      | |_) | '__/ _ \| '_ ` _ \| '_ \| __| __) |  _ \ / _ \ \/ /
-      |  __/| | | (_) | | | | | | |_) | |_ / __/| |_) | (_) >  <
-      |_|   |_|  \___/|_| |_| |_| .__/ \__|_____|____/ \___/_/\_\
-                                |_|
-```
+<img src="docs/logo.svg" alt="Prompt2Box" width="440">
 
 **Gemini object detection in one import. Point it at an image, get back labeled bounding boxes.**
 
@@ -18,17 +11,14 @@
 
 </div>
 
-> **Status:** v0 — works and tested, but the API may still change before 1.0.
-> Pin a commit if you need stability.
-
 ---
 
 ## Contents
 
-- [What it is](#what-it-is) · [How it works](#how-it-works) · [Get started](#get-started-60-seconds)
+- [What it is](#what-it-is) · [How it works](#how-it-works) · [Get started](#get-started)
 - [Authentication](#authentication) · [The API](#the-api) · [Models](#models) · [CLI](#cli)
 - [Output format](#output-format) · [Integrations](#integrations)
-- [Limitations](#limitations-read-this) · [Troubleshooting](#troubleshooting) · [Development](#development)
+- [Limitations](#limitations) · [Troubleshooting](#troubleshooting) · [Development](#development)
 
 ## What it is
 
@@ -63,7 +53,7 @@ image path ──► Gemini (spatial mode) ──► 0-1000 boxes ──► pixe
                                                                           └─ .to_json()
 ```
 
-## Get started (60 seconds)
+## Get started
 
 Not on PyPI yet — install from source:
 
@@ -304,7 +294,7 @@ for the desk photo above, truncated to 2 of the 6 items):
 Prompt2Box returns plain pixel boxes, so it drops into the rest of the CV
 ecosystem with a couple of lines.
 
-**Batch a folder** (concurrent — `detect_batch` runs the calls in parallel):
+**Batch a folder** — `detect_batch` runs the calls in parallel:
 
 ```python
 from pathlib import Path
@@ -361,7 +351,7 @@ for i, d in enumerate(result):
 prompt2box photo.jpg --no-image | jq -r '.[].label' | sort | uniq -c
 ```
 
-## Limitations (read this)
+## Limitations
 
 Prompt2Box is an **LLM-based** detector. That brings real tradeoffs you should
 weigh before depending on it:
@@ -397,7 +387,7 @@ a real number for your use case.
 | `404 ... model not found` for a location | Some models aren't in every region — try `--location us-central1`. |
 | `needs the optional 'pillow-heif' package` | You passed a `.heic/.heif` image — `pip install "prompt2box[heic]"`. |
 | Empty/garbled result | Rare model formatting miss; rerun, or try `-m gemini-2.5-pro`. |
-| Boxes look loose/wrong | Expected — see [Limitations](#limitations-read-this). Try `-m gemini-2.5-pro` or a tighter `--prompt`. |
+| Boxes look loose/wrong | Expected — see [Limitations](#limitations). Try `-m gemini-2.5-pro` or a tighter `--prompt`. |
 
 ## What's inside
 
@@ -419,7 +409,7 @@ a real number for your use case.
 ```bash
 pip install -e ".[dev]"
 pre-commit install          # optional: auto-lint/format on every commit
-pytest                      # runs the suite (Gemini is mocked — no key or network needed)
+pytest                      # run the test suite (no key or network needed)
 ruff check . && ruff format --check .   # lint + format
 mypy                        # type check
 ```
@@ -444,7 +434,7 @@ keys entirely by using your `gcloud` login.
 ## Contributing
 
 Issues and PRs welcome — see [CONTRIBUTING.md](./CONTRIBUTING.md). Keep changes
-small and tested; the suite must stay offline (Gemini mocked).
+small and tested; the suite must stay offline.
 
 ## Acknowledgements
 
