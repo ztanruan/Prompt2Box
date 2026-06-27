@@ -10,7 +10,7 @@ authors:
     given-names: Jin Tan
 repository-code: "https://github.com/ztanruan/Prompt2Box"
 url: "https://github.com/ztanruan/Prompt2Box"
-license: Apache-2.0
+license: MIT
 keywords:
   - gemini
   - object-detection

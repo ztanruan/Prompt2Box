@@ -11,4 +11,4 @@ boxes drawn on them for documentation purposes.
 - `demo.jpg` — derived from an Unsplash photograph, with detection boxes drawn on.
 
 If you reuse this repository, these images carry the Unsplash License; the code
-is Apache-2.0.
+is MIT.

@@ -1,19 +1,19 @@
 <div align="center">
 
-<img src="docs/logo.svg" alt="Prompt2Box" width="440">
+<img src="docs/logo.svg" alt="Prompt2Box" width="620">
 
-**Object detection without a model. Point it at an image, get back labeled bounding boxes — powered by Gemini.**
+**Object detection without a model. Point it at an image, get back labeled bounding boxes - powered by Gemini.**
 
 [![CI](https://github.com/ztanruan/Prompt2Box/actions/workflows/ci.yml/badge.svg)](https://github.com/ztanruan/Prompt2Box/actions/workflows/ci.yml)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
-[![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-green)](./LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![Model: Gemini](https://img.shields.io/badge/model-Gemini-4285F4)](https://ai.google.dev/)
 
 <br>
 
 <img src="docs/demo.jpg" alt="Detected objects with bounding boxes and labels" width="760">
 
-<sub>One call. No training, no weights, no GPU — just a file path and an API key.</sub>
+<sub>One call. No training, no weights, no GPU - just a file path and an API key.</sub>
 
 </div>
 
@@ -21,7 +21,7 @@
 
 No dataset. No fine-tuning. No `pip install torch`. You give Prompt2Box a local
 image; it asks Gemini's spatial model what's in it and hands you back a clean
-list of items, each with a **label** and a **pixel-space bounding box** — ready
+list of items, each with a **label** and a **pixel-space bounding box** - ready
 to draw, crop, or feed into the rest of your pipeline.
 
 ```python
@@ -34,14 +34,14 @@ result.save_annotated("out.jpg")
 
 ## Install
 
-Not on PyPI yet — install from source:
+Not on PyPI yet - install from source:
 
 ```bash
 git clone https://github.com/ztanruan/Prompt2Box && cd Prompt2Box
 pip install -e .
 ```
 
-You need a Gemini API key — get one at [aistudio.google.com/apikey](https://aistudio.google.com/apikey):
+You need a Gemini API key - get one at [aistudio.google.com/apikey](https://aistudio.google.com/apikey):
 
 ```bash
 export GEMINI_API_KEY="AIza..."     # or drop it in a .env file
@@ -51,11 +51,11 @@ prompt2box desk.jpg
 > **Heads up:** if AI Studio only hands you an `AQ.`-prefixed key, it won't work
 > with the Developer API yet (Google is mid-migration). Either create an `AIza…`
 > key in the [Cloud Console](https://console.cloud.google.com/), or use Vertex AI
-> — see [Authentication](#authentication).
+> (see [Authentication](#authentication) below).
 
 ## Use it three ways
 
-**Library — one call:**
+**Library - one call:**
 
 ```python
 from prompt2box import detect
@@ -65,7 +65,7 @@ for d in result:
     print(d.label, d.box)          # 'laptop' (560, 420, 1480, 820)
 ```
 
-**Library — reusable client (close it, or use `with`):**
+**Library - reusable client (close it, or use `with`):**
 
 ```python
 from prompt2box import Detector
@@ -89,7 +89,7 @@ prompt2box desk.jpg --no-image | jq -r '.[].label'
 
 ## How it works
 
-Gemini's spatial mode returns boxes as `[ymin, xmin, ymax, xmax]` on a 0–1000
+Gemini's spatial mode returns boxes as `[ymin, xmin, ymax, xmax]` on a 0-1000
 grid. Prompt2Box requests exactly that via a JSON `response_schema` (so the
 output is structurally guaranteed), maps the numbers back to your image's real
 pixels, and wraps them in ergonomic objects.
@@ -130,7 +130,7 @@ d.crop("street.jpg", "car.jpg")        # save just this box
 
 ### Refining
 
-LLM detections have predictable junk — a box that's basically the whole frame,
+LLM detections have predictable junk - a box that's basically the whole frame,
 the same object returned twice, tiny specks. `refine()` removes them
 deterministically (no extra API call) and tells you **why** each was dropped:
 
@@ -147,7 +147,7 @@ detect("scene.jpg", refine=RefineConfig(max_area_frac=0.6, drop_labels=("waterma
 | Backend | How | Notes |
 | --- | --- | --- |
 | **Developer API** (default) | `export GEMINI_API_KEY="AIza..."` | Free tier. `.env` in the working dir is read automatically. `AQ.` keys don't work yet. |
-| **Vertex AI** | `prompt2box img.jpg --vertex` | No API key — uses your `gcloud` login. Needs a billing-enabled GCP project. |
+| **Vertex AI** | `prompt2box img.jpg --vertex` | No API key - uses your `gcloud` login. Needs a billing-enabled GCP project. |
 
 ```bash
 # Vertex AI (one-time)
@@ -180,7 +180,7 @@ prompt2box IMAGE [options]
 | `--api-key` | Override `GEMINI_API_KEY` |
 | `-v, --verbose` | Verbose logging to stderr |
 
-JSON goes to **stdout**, status lines to **stderr** — pipe cleanly.
+JSON goes to **stdout**, status lines to **stderr** - pipe cleanly.
 
 ## Output format
 
@@ -193,16 +193,16 @@ JSON goes to **stdout**, status lines to **stderr** — pipe cleanly.
 ]
 ```
 
-- `x_min, y_min, x_max, y_max` — absolute pixels, origin top-left.
-- `box_normalized` — Gemini's ordered `[ymin, xmin, ymax, xmax]` on the 0–1000 scale.
+- `x_min, y_min, x_max, y_max` - absolute pixels, origin top-left.
+- `box_normalized` - Gemini's ordered `[ymin, xmin, ymax, xmax]` on the 0-1000 scale.
 
 ## Limitations
 
 Prompt2Box is an **LLM detector**, with the tradeoffs that implies:
 
-- **Boxes are approximate** and won't be pixel-tight — this is not a YOLO/Detectron replacement.
-- **Non-deterministic** — the same image can give slightly different boxes run to run.
-- **Cost & latency** — each call is billed and takes a few seconds; not for real-time or high volume.
+- **Boxes are approximate** and won't be pixel-tight - this is not a YOLO/Detectron replacement.
+- **Non-deterministic** - the same image can give slightly different boxes run to run.
+- **Cost & latency** - each call is billed and takes a few seconds; not for real-time or high volume.
 
 Where it shines: **zero setup**, **open-vocabulary** labels (detect "the rusty
 bicycle", not a fixed class list), and quick prototyping. Need precision or
@@ -219,15 +219,21 @@ and duplicates, or try `-m gemini-2.5-pro` on cluttered scenes.
 Google is migrating key formats and `AQ.` keys aren't accepted by the Developer
 API yet. Use an `AIza…` key (Cloud Console) or `--vertex`.
 
+**`--vertex` fails with `No module named 'OpenSSL'`.**
+Your environment enforces certificate-based access (context-aware access / mTLS),
+which makes `google-auth` reach for `pyOpenSSL`. Install the optional auth extra:
+`pip install pyopenssl`. It's not a Prompt2Box dependency - only some enterprise
+networks need it.
+
 **Does it run offline?**
-No — it calls Gemini. The *test suite* runs fully offline (the client is faked).
+No - it calls Gemini. The *test suite* runs fully offline (the client is faked).
 
 **Which model should I use?**
 `gemini-2.5-flash` (default) is fast and cheap; `gemini-2.5-pro` is more accurate
 on busy images. Set it with `-m` or `model=`.
 
 **Is it on PyPI?**
-Not yet — install from source (above).
+Not yet - install from source (above).
 
 ## Development
 
@@ -241,10 +247,10 @@ mypy
 
 The suite injects a fake client, so it's fully offline. A real-API smoke test in
 `tests/test_integration.py` runs only when credentials are present. CI runs ruff,
-mypy, and pytest on Python 3.10–3.13. Runnable examples live in
+mypy, and pytest on Python 3.10-3.13. Runnable examples live in
 [`examples/`](./examples).
 
 ## License
 
-Apache 2.0 — see [LICENSE](./LICENSE). Demo images derive from
+MIT - see [LICENSE](./LICENSE). Demo images derive from
 [Unsplash](https://unsplash.com/license); see [docs/CREDITS.md](./docs/CREDITS.md).

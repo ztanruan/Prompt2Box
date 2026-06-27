@@ -4,12 +4,12 @@ version = "0.1.0"
 description = "Gemini object detection in one import — labeled bounding boxes from a local image"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "Apache-2.0" }
+license = { text = "MIT" }
 authors = [{ name = "Jin Tan Ruan" }]
 keywords = ["gemini", "object-detection", "bounding-box", "computer-vision", "llm"]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: Apache Software License",
+    "License :: OSI Approved :: MIT License",
     "Topic :: Scientific/Engineering :: Image Recognition",
 ]
 # Floors reflect the APIs we actually use and test against (developed on
