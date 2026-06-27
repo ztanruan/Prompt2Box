@@ -1,0 +1,8 @@
+# Dependencies are declared in pyproject.toml (the single source of truth).
+#
+#   runtime:     pip install .
+#   development: pip install -e ".[dev]"
+#   HEIC images: pip install ".[heic]"
+#
+# This file exists only for tools/users that expect a requirements.txt.
+-e .

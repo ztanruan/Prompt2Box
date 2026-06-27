@@ -1,0 +1,49 @@
+# Publish to PyPI when a version tag (vX.Y.Z) is pushed — but only if the full
+# quality gate passes first.
+#
+# Setup (one time): configure a PyPI "Trusted Publisher" for this repo+workflow
+# at https://pypi.org/manage/account/publishing/ — no API token needed.
+# Then: bump the version in pyproject.toml, tag (git tag v0.1.0), and push the tag.
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  # Re-run the gate here so a tag can never publish red code, even if it was
+  # pushed without the branch CI having run.
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: mypy
+      - run: pytest -q
+
+  build-and-publish:
+    needs: gate
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write  # required for PyPI trusted publishing (OIDC)
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build sdist + wheel
+        run: |
+          pip install build
+          python -m build
+      - name: Check metadata
+        run: |
+          pip install twine
+          twine check dist/*
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1

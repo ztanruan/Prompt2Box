@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use Prompt2Box in your work, please cite it."
+title: "Prompt2Box: Gemini object detection in one import"
+abstract: >-
+  A small Python library and CLI that returns labeled pixel-space bounding boxes
+  for items in a local image using Google's Gemini vision models.
+type: software
+authors:
+  - family-names: Ruan
+    given-names: Jin Tan
+repository-code: "https://github.com/ztanruan/Prompt2Box"
+url: "https://github.com/ztanruan/Prompt2Box"
+license: Apache-2.0
+keywords:
+  - gemini
+  - object-detection
+  - bounding-box
+  - computer-vision
