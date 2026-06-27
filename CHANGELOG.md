@@ -28,6 +28,8 @@ All notable changes to this project are documented here. The format is based on
   whole-image catch-all boxes, near-duplicates, and (optionally) tiny/blocklisted
   ones, recording why each was dropped in `.dropped`.
 - CLI `.env` loading (current directory; real env vars take precedence).
+- Any Gemini vision model works via `model=` / `-m`; a non-Gemini model id warns
+  (box_2d detection is Gemini-specific).
 
 ### Hardening (production-readiness pass)
 - Structured output: detection sends a `response_schema` and reads the SDK's

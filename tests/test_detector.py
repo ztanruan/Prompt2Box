@@ -123,6 +123,25 @@ def test_detect_batch_empty_returns_empty(make_client):
     assert Detector(client=make_client(RESPONSE)).detect_batch([]) == []
 
 
+def test_non_gemini_model_warns(make_client, caplog):
+    """A non-Gemini model id should warn (box_2d is Gemini-only)."""
+    import logging
+
+    with caplog.at_level(logging.WARNING):
+        Detector(client=make_client("[]"), model="claude-3-5-sonnet")
+    assert any("box_2d" in r.message and "Gemini" in r.message for r in caplog.records)
+
+
+def test_gemini_models_do_not_warn(make_client, caplog):
+    """Any Gemini model id is accepted without the non-Gemini warning."""
+    import logging
+
+    with caplog.at_level(logging.WARNING):
+        Detector(client=make_client("[]"), model="gemini-2.5-pro")
+        Detector(client=make_client("[]"), model="gemini-2.0-flash")
+    assert not any("box_2d" in r.message for r in caplog.records)
+
+
 def test_aq_key_warns(monkeypatch, caplog):
     """Constructing with an AQ. key should emit a helpful warning."""
     import logging

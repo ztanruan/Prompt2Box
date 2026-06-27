@@ -228,9 +228,13 @@ networks need it.
 **Does it run offline?**
 No - it calls Gemini. The *test suite* runs fully offline (the client is faked).
 
-**Which model should I use?**
-`gemini-2.5-flash` (default) is fast and cheap; `gemini-2.5-pro` is more accurate
-on busy images. Set it with `-m` or `model=`.
+**Which model should I use? Can I use Claude / Llama / other models?**
+Any **Gemini** vision model works — `gemini-2.5-flash` (default) is fast and
+cheap, `gemini-2.5-pro` is more accurate on busy images, and newer Gemini
+versions work too. Set it with `-m` or `model=`.
+Non-Gemini models (Claude, Llama, Mistral on Vertex) are **not supported for
+detection**: the normalized `box_2d` output is a Gemini-trained capability, so
+other models don't return usable boxes. Pass one and you'll get a warning.
 
 **Is it on PyPI?**
 Not yet - install from source (above).

@@ -276,6 +276,15 @@ class Detector:
         if max_image_size < 0:
             raise ValueError(f"max_image_size must be >= 0 (got {max_image_size})")
         self.model = model
+        if "gemini" not in model.lower():
+            # box_2d spatial detection is a Gemini-trained capability. Other Vertex
+            # Model Garden models (Claude, Llama, …) won't return usable boxes, and
+            # they use different SDKs entirely — so warn rather than silently fail.
+            logger.warning(
+                "Model %r is not a Gemini model. Bounding-box detection (box_2d) is "
+                "Gemini-specific; non-Gemini models won't return usable boxes.",
+                model,
+            )
         # Images larger than this (longest edge, px) are downscaled before upload
         # to cut cost/latency. Boxes are normalized 0-1000, so accuracy is
         # unaffected — we still map back to the original pixel dimensions.
