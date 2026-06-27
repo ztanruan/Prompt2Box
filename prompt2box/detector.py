@@ -75,6 +75,8 @@ Rules:
 - One entry per distinct physical item; do not merge separate items.
 - If the same kind of item appears multiple times, return one entry each and
   disambiguate the label (e.g. "person (left)", "person (right)").
+- Never return masks or segmentation polygons - bounding boxes only.
+- Return at most 25 objects; if there are more, keep the most prominent.
 """
 
 _MIME_BY_EXT = {
