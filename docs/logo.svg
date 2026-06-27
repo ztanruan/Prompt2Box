@@ -1,24 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 150" width="600" height="150" role="img" aria-label="Prompt2Box">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 690 170" width="690" height="170" role="img" aria-label="Prompt2Box"
+     font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace">
   <title>Prompt2Box</title>
-  <defs>
-    <linearGradient id="wordmark" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#4285F4"/>
-      <stop offset="1" stop-color="#9b6bff"/>
-    </linearGradient>
-  </defs>
-
-  <!-- detection bounding box motif around the wordmark -->
-  <rect x="18" y="40" width="564" height="92" rx="10" fill="none"
-        stroke="#34A853" stroke-width="3" stroke-dasharray="11 7"/>
-
-  <!-- detection label tag -->
-  <rect x="18" y="16" width="132" height="28" rx="6" fill="#34A853"/>
-  <text x="84" y="35" text-anchor="middle"
-        font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
-        font-size="15" font-weight="700" fill="#ffffff">object 0.99</text>
-
-  <!-- wordmark -->
-  <text x="300" y="103" text-anchor="middle"
-        font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
-        font-size="52" font-weight="800" fill="url(#wordmark)">Prompt2Box</text>
+  <text xml:space="preserve" x="8" y="30" fill="#4285F4" font-size="17" font-weight="700">
+    <tspan x="8" dy="0">        ___                            _   ____  ____</tspan>
+    <tspan x="8" dy="22">       / _ \ _ __ ___  _ __ ___  _ __ | |_|___ \| __ )  _____  __</tspan>
+    <tspan x="8" dy="22">      | |_) | '__/ _ \| '_ ` _ \| '_ \| __| __) |  _ \ / _ \ \/ /</tspan>
+    <tspan x="8" dy="22">      |  __/| | | (_) | | | | | | |_) | |_ / __/| |_) | (_) &gt;  &lt;</tspan>
+    <tspan x="8" dy="22">      |_|   |_|  \___/|_| |_| |_| .__/ \__|_____|____/ \___/_/\_\</tspan>
+    <tspan x="8" dy="22">                                |_|</tspan>
+  </text>
 </svg>

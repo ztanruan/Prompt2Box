@@ -12,7 +12,7 @@ Manifest format (JSON):
     {
       "images": [
         {
-          "path": "docs/example2.jpg",
+          "path": "docs/demo.jpg",
           "objects": [
             {"label": "laptop", "box": [480, 67, 900, 600]},
             {"label": "smartphone", "box": [580, 434, 780, 500]}

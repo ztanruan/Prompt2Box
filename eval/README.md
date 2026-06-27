@@ -14,7 +14,7 @@ python eval/iou_eval.py eval/sample/manifest.example.json --vertex
 Output:
 
 ```
-  ../../docs/example2.jpg: tp=2 fp=4 fn=1 meanIoU=0.78
+  ../../docs/demo.jpg: tp=2 fp=4 fn=1 meanIoU=0.78
 === SUMMARY ===
   precision @ 0.5: 0.33
   recall    @ 0.5: 0.67

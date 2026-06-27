@@ -8,7 +8,7 @@ The annotated demo images in this directory are derived from photos on
 commercially, no attribution required). They were downscaled and had detection
 boxes drawn on them for documentation purposes.
 
-- `example.jpg` / `example2.jpg` — derived from Unsplash photographs.
+- `demo.jpg` — derived from an Unsplash photograph, with detection boxes drawn on.
 
 If you reuse this repository, these images carry the Unsplash License; the code
 is Apache-2.0.

@@ -1,12 +1,12 @@
 {
-  "_comment": "Template manifest. Replace `objects` with REAL ground-truth boxes (pixel x_min,y_min,x_max,y_max) for a meaningful score. The boxes below are approximate placeholders for the bundled demo image, so the resulting IoU is illustrative only — not a benchmark.",
+  "_comment": "Template manifest. Replace `objects` with REAL ground-truth boxes (pixel x_min,y_min,x_max,y_max) for a meaningful score. The boxes below are approximate placeholders for the bundled demo image (1920x1440), so the resulting IoU is illustrative only — not a benchmark.",
   "images": [
     {
-      "path": "../../docs/example2.jpg",
+      "path": "../../docs/demo.jpg",
       "objects": [
-        {"label": "laptop", "box": [470, 80, 905, 610]},
-        {"label": "smartphone", "box": [585, 430, 775, 505]},
-        {"label": "notebook", "box": [505, 405, 845, 540]}
+        {"label": "laptop", "box": [740, 160, 1560, 820]},
+        {"label": "camera", "box": [360, 660, 650, 920]},
+        {"label": "book", "box": [30, 720, 900, 1050]}
       ]
     }
   ]

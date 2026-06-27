@@ -22,7 +22,7 @@ pytestmark = pytest.mark.skipif(
     reason="no API credentials (set GEMINI_API_KEY or GOOGLE_CLOUD_PROJECT to run)",
 )
 
-_IMAGE = Path(__file__).resolve().parent.parent / "docs" / "example2.jpg"
+_IMAGE = Path(__file__).resolve().parent.parent / "docs" / "demo.jpg"
 
 
 def test_real_detection_smoke():
