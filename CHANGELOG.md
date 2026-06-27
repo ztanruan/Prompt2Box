@@ -17,7 +17,7 @@ All notable changes to this project are documented here. The format is based on
   rejected by the Developer API).
 - Mocked test suite + golden-response test; ruff lint; CI matrix.
 - Dev tooling: pre-commit (ruff + ruff-format), `examples/detect.py`,
-  `CITATION.cff`, and a tag-triggered PyPI release workflow.
+  and `CITATION.cff`.
 - Automatic downscaling of large images before upload (`max_image_size` /
   `--max-size`) — cuts cost/latency without affecting accuracy.
 - HEIC/HEIF support via the optional `[heic]` extra (`pillow-heif`), with a
@@ -48,8 +48,6 @@ All notable changes to this project are documented here. The format is based on
 - Annotated-output and HEIC handling no longer crash on `.heic`/`.gif` inputs;
   HEIF registration is thread-safe.
 - CLI `.env` parsing tolerates `export ` and inline comments.
-- Release workflow gates publishing on the full CI suite (lint, format, mypy,
-  tests) so a tag can never ship red code.
 - Typed (`py.typed`) and type-checked (mypy in CI); CI also enforces
   `ruff format` and runs on Python 3.10–3.13.
 
